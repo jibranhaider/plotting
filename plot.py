@@ -179,10 +179,27 @@ def combine_plots(plots_individual, plot_combined):
 
 
 #--------------------------------------------------------------------------------------------------
+# Create directory to store plots if it doesn't exist
+#--------------------------------------------------------------------------------------------------
+def create_directory(plot_folder):
+  cwd = os.getcwd()
+  plot_directory = cwd+ "/" +plot_folder
+  if os.path.isdir(plot_directory):
+    print("Overwriting existing directory " +plot_directory+ " to store plots ...")
+    os.system("rm -r " +plot_directory+ "/*")
+  else:
+    print("Creating directory to store plots ...")
+    os.system("mkdir " +plot_directory)
+
+
+#--------------------------------------------------------------------------------------------------
 # MAIN PROGRAM
 #--------------------------------------------------------------------------------------------------
 
 def main():
+
+  # Create directory to store plots
+  create_directory('plots')
 
   # Residuals
   print("Generating residual plot ...")
