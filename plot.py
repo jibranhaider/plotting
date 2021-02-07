@@ -147,7 +147,7 @@ def plot_bar_chart_minimum(directory, results_file, x_label, y_label, y_scale, f
   data = {}
   for i in range(scaling_cases):
     data[i] = min(np.loadtxt(directory[i]+ '/' +results_file))
-    plt.bar(str(benchmark_partitions[i]), data[i], 0.75, label=benchmark_plot_labels[i])
+    plt.bar(str(benchmark_partitions[i]), data[i], 0.75, label=benchmark_plot_labels[i], color=line_colors[i], alpha=0.7)
 
   save_plot(x_label, y_label, y_scale, figure)
 
