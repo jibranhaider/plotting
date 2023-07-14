@@ -42,9 +42,9 @@ marker_size  = [0.5, 0.8, 0.6, 0.2]
 plot_directory = 'plots'
 
 # Inputs for comparison plots
-comparison_directory = 'results/comparison'         # Inputs for comparison plots
-comparison_case_name = ['mach_0p2', 'mach_0p4']    # Folder names for comparison cases
-comparison_plot_labels = ['Mach 0.2', 'Mach 0.4']  # Plot labels for comparison cases
+comparison_directory = 'results/comparison'           # Inputs for comparison plots
+comparison_case_name = ['mach_0p2', 'mach_0p4']       # Folder names for comparison cases
+comparison_plot_labels = ['Mach 0.2', 'Mach 0.4']     # Plot labels for comparison cases
 
 # Inputs for inputs for parallel benchmarking plots
 benchmark_directory = 'results/scaling'               # Inputs for scaling plots
@@ -85,7 +85,7 @@ def plot_xy(directory, labels, results_file, x, x_label, y, y_label, y_scale, fi
   data = {}
   for i in range(len(directory)):
     data[i] = np.loadtxt(directory[i]+ '/' +results_file)
-    plt.plot(data[i][:,x], data[i][:,y], '-o', marker=marker_style[i], ms=marker_size, color=line_colors[i], lw=line_widths[i], label=labels[i])
+    plt.plot(data[i][:,x], data[i][:,y], marker=marker_style[i], ms=marker_size, color=line_colors[i], lw=line_widths[i], label=labels[i])
     plt.legend()
 
   save_plot(x_label, y_label, y_scale, figure)
@@ -98,7 +98,7 @@ def total_runTimes(directory, labels, results_file, x_label, y_label, y_scale, f
   data = {}
   for i in range(len(directory)):
     data[i] = np.loadtxt(directory[i]+ '/' +results_file)
-    plt.plot(range(1, len(data[i])+1), data[i], '-o', marker=marker_style[i], ms=marker_size[i], color=line_colors[i], lw=line_widths[i], label=labels[i])
+    plt.plot(range(1, len(data[i])+1), data[i], marker=marker_style[i], ms=marker_size[i], color=line_colors[i], lw=line_widths[i], label=labels[i])
     plt.legend()
 
   save_plot(x_label, y_label, y_scale, figure)
@@ -116,7 +116,7 @@ def plot_parallel_speedup(directory, results_file, x_label, y_label, y_scale, fi
     data.append(data_ref/min(np.loadtxt(directory[i]+ '/' +results_file)))
     ideal.append(benchmark_partitions[i] / benchmark_partitions[0])
 
-  plt.plot(benchmark_partitions, data, '-o', marker=marker_style[0], ms=marker_size, color=line_colors[0], lw=line_widths[0], label='Actual speedup')
+  plt.plot(benchmark_partitions, data, marker=marker_style[0], ms=marker_size, color=line_colors[0], lw=line_widths[0], label='Actual speedup')
   plt.plot(benchmark_partitions, ideal, '-o', color='k', ms=0., lw=line_widths[0], label='Ideal speedup')
   plt.legend()
   save_plot(x_label, y_label, y_scale, figure)
@@ -134,7 +134,7 @@ def plot_parallel_efficiency(directory, results_file, x_label, y_label, y_scale,
     data.append(data_ref/min(np.loadtxt(directory[i]+ '/' +results_file))/benchmark_partitions[i]*benchmark_partitions[0]*100)
     ideal.append(benchmark_partitions[i] / benchmark_partitions[i]*100)
 
-  plt.plot(benchmark_partitions, data, '-o', marker=marker_style[0], ms=marker_size, color=line_colors[0], lw=line_widths[0], label='Actual efficiency')
+  plt.plot(benchmark_partitions, data, marker=marker_style[0], ms=marker_size, color=line_colors[0], lw=line_widths[0], label='Actual efficiency')
   plt.plot(benchmark_partitions, ideal, '-o', color='k', ms=0., lw=line_widths[0], label='Ideal efficiency')
   plt.legend()
   save_plot(x_label, y_label, y_scale, figure)
@@ -199,7 +199,7 @@ def create_directory(plot_folder):
 def main():
 
   # Create directory to store plots
-  create_directory('plots')
+  create_directory(plot_directory)
 
   # Residuals
   print("Generating residual plot ...")

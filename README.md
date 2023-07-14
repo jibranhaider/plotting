@@ -14,7 +14,7 @@ This repository provides 2D plot templates for output from scientific computing 
 <hr>
 
 ## 2. How to use this program?
-Assign the directory where you want the plots to be stored.
+Assign the directory where you want the plots to be stored in the source file `plot.py`.
 ```python
 plot_directory = 'plots'    # Directory to store plots
 ```
